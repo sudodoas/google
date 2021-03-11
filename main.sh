@@ -19,7 +19,7 @@ url=$(curl "https://www.google.com/search?sxsrf=ALeKk01YewRFAxy_HI-_kfFyQQ0n6JqH
 
 
 cd $HOME/.local/tmp/google
-curl $url | pup -c "h1,h2,h3,h4,h5,h6,p" > site.html
+curl $url | pup -c "h1,h2,p" > site.html
 pandoc -f html -t markdown site.html > site.md
 mdcat site.md -p
 
