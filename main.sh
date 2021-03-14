@@ -25,10 +25,17 @@ then
     echo "youtube video"
     mpv $url
 else
+#    echo "not a youtube video"
+#    cd $HOME/.local/tmp/google
+#    curl $url -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.36" | pup -c "h1,h2,p,li,ol,ul,pre" > site.html
+#    pandoc -f html -t markdown site.html > site.md
+#    mdcat site.md -p
+
     echo "not a youtube video"
     cd $HOME/.local/tmp/google
-    curl $url -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.36" | pup -c "h1,h2,p,li,ol,ul,pre" > site.html
-    pandoc -f html -t markdown site.html > site.md
-    mdcat site.md -p
+#    curl $url -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.36" | pup -c "h1,h2,p,li,ol,ul,pre" > site.html
+     curl $url -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.36" | pup -c "body"  > site.html
+    pandoc -f html -t epub  site.html -o site.epub --metadata title="Website"
+    zathura site.epub
 fi
 #brave $url
